@@ -16,7 +16,19 @@ class Toy_LayerOp<string mnemonic, list<Trait> traits = []> :
     }]; 
 }
 
-def AddOp : Toy_LayerOp<"add"> {
+def ConstantOp : Toy_LayerOp<
+  "const"
+  > {
+  let summary = "const operation";
+
+  let arguments = (ins APIntAttr:$value);
+
+  let results = (outs AnyInteger:$result);
+}
+
+def AddOp : Toy_LayerOp<
+  "add"
+  > {
   let summary = "add operation";
 
   let arguments = (ins Variadic<AnyInteger>:$inputs);
